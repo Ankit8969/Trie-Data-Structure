@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool search(Trie* root, string str)
+{
+    for (int i=0;i<str.length();i++)
+    {
+        int ind = str[i] - 'a';
+        if (root->alpha[ind])
+        root=root->alpha[ind];
+        else
+        return false;
+    }
+    if (root->wde > 0)
+    return true;
+    return false;
+}
+
+
+int main()
+{
+    int n;
+    cin >> n;
+    vector<string> v(n);
+    for (int i=0;i<n;i++)
+    cin>> v[i];
+    
+    Trie* root = new Trie('/');
+    
+    for (int i=0;i<n;i++)
+    {
+        insert(v[i], root);
+    }
+    
+    // print(root);
+    
+    if (search(root, "abc"))
+    cout << "Present " << endl;
+    else
+    cout<<"Absent " << endl;
+    
+}
