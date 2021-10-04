@@ -26,6 +26,7 @@ void insert(string str, Trie* root)
         }
         root = root->alpha[ind];
     }
+    root->wde ++ ;
 }
 
 void print(Trie* root)
