@@ -1,0 +1,59 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Trie
+{
+    char ch;
+    int wde;
+    Trie *alpha[26];
+    Trie(char x)
+    {
+        ch=x;
+        wde = 0;
+        for (int i=0;i<26;i++)
+        alpha[i] = NULL;
+    }
+};
+
+void insert(string str, Trie* root)
+{
+    for (int i=0;i<str.length();i++)
+    {
+        int ind = str[i] - 'a';
+        if (root->alpha[ind] == NULL)
+        {
+            root->alpha[ind] = new Trie(str[i]);
+        }
+        root = root->alpha[ind];
+    }
+}
+
+void print(Trie* root)
+{
+    if (root == NULL)
+    return ;
+    
+    cout<<root->ch<<" ";
+    for (int i=0;i<26;i++)
+    print(root->alpha[i]);
+}
+
+
+int main()
+{
+    int n;
+    cin >> n;
+    vector<string> v(n);
+    for (int i=0;i<n;i++)
+    cin>> v[i];
+    
+    Trie* root = new Trie('/');
+    
+    for (int i=0;i<n;i++)
+    {
+        insert(v[i], root);
+    }
+    
+    print(root);+
+    
+}
